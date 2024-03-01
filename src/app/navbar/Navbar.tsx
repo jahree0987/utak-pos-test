@@ -1,4 +1,3 @@
-// components/Sidebar.tsx
 "use client";
 import styled from "styled-components";
 import Image from "next/image";
@@ -6,7 +5,7 @@ import logo from "./assets/logo.png";
 import CategoryIcon from "./components/CategoryIcon";
 import FoodIcon from "./components/FoodIcon";
 import MenuIcon from "./components/MenuIcon";
-import { useMenu } from "../services/MenuContext";
+import { useMenu } from "../context/MenuContext";
 import { useEffect } from "react";
 
 const SidebarContainer = styled.div`

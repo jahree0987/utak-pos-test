@@ -9,10 +9,8 @@ import {
 import firebase from "firebase/compat/app";
 
 interface FoodData {
-  // Define the structure of your food data
   name: string;
   description: string;
-  // Add more fields as needed
 }
 
 export const getImage = (imageKey: string): Promise<string> => {
@@ -21,15 +19,12 @@ export const getImage = (imageKey: string): Promise<string> => {
       const imageRef = storageRef(storage, `images/${imageKey}`);
       getDownloadURL(imageRef)
         .then((url) => {
-          // Resolve with the URL if successfully retrieved
           resolve(url);
         })
         .catch((error) => {
-          console.log("error in getting download URL", error);
           reject(error);
         });
     } catch (error) {
-      console.log("Error in getting image from firebase storage", error);
       reject(error);
     }
   });
@@ -87,10 +82,10 @@ export const fetchFoodData = async () => {
           }
         }
 
-        resolve(food); // Resolve the promise with the fetched data
+        resolve(food); 
       },
       {
-        onlyOnce: true, // Read data only once
+        onlyOnce: true, 
       }
     );
   });

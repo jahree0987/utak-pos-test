@@ -32,6 +32,5 @@ const StyledImg = styled.img`
 
   &:hover {
     transform: scale(3.1); /* Increase size on hover */
-    // animation: ${shakeAnimation} 0.5s ease; /* Add shake animation on hover */
   }
 `;

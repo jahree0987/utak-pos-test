@@ -7,7 +7,6 @@ import SingleCategory from "./SingleCategory";
 import { CategoryData } from "../types/Category";
 import { useCategory } from "./context/CategoryContext";
 
-// Styled components
 const TableWrapper = styled.div`
   color: #63bac1;
   margin-top: 120px;
@@ -35,33 +34,11 @@ const TableRow = styled.tr`
   text-align: center;
 `;
 
-const TableCell = styled.td`
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-`;
+
 
 export default function AddCategoryTable() {
-  // const [categories, setCategories] = useState<CategoryData[] | undefined>(
-  //   undefined
-  // );
-  // useEffect(() => {
-  //   const fetchCategoryData = async () => {
-  //     try {
-  //       const categoryData = (await fetchCategory()) as CategoryData[];
-  //       setCategories(categoryData);
-  //     } catch (error) {
-  //       console.log("Error in fetching Category:", error);
-  //     }
-  //   };
-
-  //   fetchCategoryData();
-  // }, []);
-
   const { categories } = useCategory();
 
-
-
-  
   return (
     <TableWrapper>
       <Table>

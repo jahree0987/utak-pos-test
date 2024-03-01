@@ -1,14 +1,11 @@
-import Image from "next/image";
 import * as React from "react";
 import styled from "styled-components";
-import burger from "../../../../public/Burger.jpg";
 import DeleteIcon from "@/app/category/components/DeletIcon";
 import { SingleItem } from "../types/SingleItem";
 import AddIcon from "./AddIcon";
 import { useMenuContext } from "./context/menuContext";
-import { deleteItemFromMenu } from "@/app/firebase/menu/deletItemFromMenu";
-import { Menu } from "@/app/firebase/types/Menu";
 import { AllMenuItems } from "../types/AllMenuItems";
+import { deleteItemFromMenu } from "@/app/firebase/menu/deletItemFromMenu";
 
 export default function SingleItem({
   item,
@@ -28,21 +25,19 @@ export default function SingleItem({
     addItemsMenu,
     setAllMenuItems,
     allMenuItems,
+    addFoodToMenuItemArray,
   } = useMenuContext();
   const [close, setClose] = React.useState(false);
   const handleAddtoMenu = async () => {
     const newArray = addItemsMenu(allMenu, selectedMenu, item);
-
-    console.log("ALL MENU ITEMS", allMenuItems);
-    console.log("CURRENT ITEM", item);
     await addFoodToMenu(selectedMenu, item.keys);
     setClose(true);
   };
   const handleDeleteItemMenu = async () => {
-    console.log(item.menuItemID);
     const newArray = removeItemFromMenuArray(allMenu, item.menuItemID);
     setAllMenu(newArray);
     await deleteItemFromMenu(item.menuItemID);
+    setClose(true)
   };
   return (
     <>

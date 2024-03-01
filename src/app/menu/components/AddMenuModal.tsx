@@ -4,9 +4,9 @@ import AddIcon from "./AddIcon";
 import CloseIcon from "./CloseIcon";
 import { useForm } from "react-hook-form";
 import { error } from "console";
-import { addMenu } from "@/app/firebase/menu/addMenu";
 import { useMenuContext } from "./context/menuContext";
 import { Menu } from "@/app/firebase/types/Menu";
+import { addMenu } from "@/app/firebase/menu/addMenu";
 
 const ModalWrapper = styled.div<{ isOpening: any }>`
   display: ${(props) => (props.isOpening ? "block" : "none")};

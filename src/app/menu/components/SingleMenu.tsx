@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import SingleItem from "./SingleItem";
-import { AddFoodMenuButton } from "./addFoodMenuButton";
+import { AddFoodMenuButton } from "./AddFoodMenuButton";
 import { sampleData } from "../data/sampleData";
 import { useState } from "react";
 import AllFoodModal from "./AllFoodModal";
@@ -37,11 +37,7 @@ export default function SingleMenu({
     <>
       <Div>{menu.name}</Div>
       <FoodContainer>
-        <AddFoodMenuButton onClick={handleClick} menuName={menu.name} />
-        {/* {sampleData &&
-          sampleData.map((item, index) => {
-            return <SingleItem key={index} item={item} />;
-          })} */}
+        <AddFoodMenuButton onClick={handleClick} menuName={menu.name} />  
         {items &&
           items.map((item, index) => {
             return <SingleItem key={index} item={item} menuKeys={menu.keys} />;

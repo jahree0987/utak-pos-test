@@ -1,21 +1,16 @@
 import * as React from "react";
 import styled from "styled-components";
-import InputTextField from "./InputTextfield";
 import CategoryDropdown from "./CategoryDropdown";
 import ImageUpload from "./ImageUpload";
 import AddButton from "@/app/category/components/AddButton";
 import { useForm } from "react-hook-form";
-import { useCategory } from "@/app/category/components/context/CategoryContext";
 import { useFoodContext } from "./context/FoodContext";
-import { addFood } from "@/app/firebase/food/AddFood";
-import { fetchFoodData } from "@/app/firebase/food/GetFood";
-import { updateFood } from "@/app/firebase/food/UpdateFood";
-import { update } from "firebase/database";
+import { addFood } from "@/app/firebase/food/addfood";
+import { updateFood } from "@/app/firebase/food/updateFood";
 
 const Div = styled.div`
   border-radius: 36px;
   background-color: #fdfdfb;
-  // background-color: blue;
   display: flex;
   max-width: 900px;
   flex-direction: column;
@@ -280,6 +275,8 @@ export default function AddFoodForm() {
     setEditFood,
     setEditFoodCategory,
     setIsEditing,
+    addItemFromArray,
+    allFood,
   } = useFoodContext();
 
   const clear = () => {
@@ -302,8 +299,10 @@ export default function AddFoodForm() {
       };
       if (selectedFile) {
         await updateFood(newData, selectedFile);
+        fetchFood();
       } else {
         await updateFood(newData);
+        fetchFood();
       }
     } else {
       if (!selectedFile || !selectedCategory) {
@@ -311,10 +310,13 @@ export default function AddFoodForm() {
         return;
       } else {
         const newData = { ...data, category: selectedCategory?.keys };
-        await addFood(newData, selectedFile);
+        const newFoodData = (await addFood(newData, selectedFile)) as any;
+        if (allFood) {
+          const newFoodItems = addItemFromArray(allFood, newFoodData);
+         
+        }
       }
     }
-    fetchFood();
     clear();
   };
 
@@ -365,11 +367,7 @@ export default function AddFoodForm() {
                   {errors.price && <p>This field is required</p>}
                 </Div7>
                 <Div12>Upload Image</Div12>
-                <Div13>
-                  {/* <Img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/f57ec1098a632438e481dcc29baa4d394ff63f27141aff6fe967376c246931d0?"
-                /> */}
+                <Div13>                
                   <ImageUpload />
                 </Div13>
               </Div5>

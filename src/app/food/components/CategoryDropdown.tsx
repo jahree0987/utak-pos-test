@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useFoodContext } from "./context/FoodContext";
 
-// Styled components for the dropdown
 const DropdownWrapper = styled.div`
   position: relative;
   display: inline-block;
@@ -77,9 +76,8 @@ function CategoryDropdown() {
   };
 
   const handleCategorySelect = (category: any) => {
-    setSelectedCategory(category); // Set the selected category
-    setIsOpen(false); // Close the dropdown
-    // setSelectedCategory(undefined)
+    setSelectedCategory(category); 
+    setIsOpen(false); 
   };
 
   return (
@@ -92,6 +90,7 @@ function CategoryDropdown() {
             ? `${editFoodCategory.name}`
             : "Choose Category"}
         </p>
+
         <Img2
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/4c9c2ac3bc74a42a0aa814a94f8f6a914fe08083b29f59f331f458c9a37db420?"

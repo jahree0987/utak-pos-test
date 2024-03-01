@@ -1,12 +1,8 @@
 "use client";
 import { CategoryData } from "@/app/category/types/Category";
-import { fetchFoodData } from "@/app/firebase/food/GetFood";
 import { addFoodToOneMenu } from "@/app/firebase/menu/addFoodToMenu";
-import { fetchItemMenu } from "@/app/firebase/menu/getItemMenu";
 import { fetchMenu } from "@/app/firebase/menu/getMenu";
 import { Menu } from "@/app/firebase/types/Menu";
-import { useFoodContext } from "@/app/food/components/context/FoodContext";
-import { Food } from "@/app/food/types/Food";
 import React, {
   createContext,
   useState,
@@ -15,13 +11,6 @@ import React, {
   useEffect,
 } from "react";
 import { AllMenuItems } from "../../types/AllMenuItems";
-
-// Define the type for the context value
-
-type FoodCategory = {
-  keys: string;
-  name: string;
-};
 
 type MenuContextType = {
   allMenu: Menu[] | undefined;
@@ -47,12 +36,11 @@ type MenuContextType = {
   ) => Menu[] | undefined;
 
   addNewMenutoArray: (currentMenu: Menu[], newMenu: Menu) => void;
+  addFoodToMenuItemArray: (currentMenuItems: AllMenuItems[], foodItem: AllMenuItems) => void
 };
 
-// Create a new context
 const MenuContext = createContext<MenuContextType | undefined>(undefined);
 
-// Create a custom hook to use the FoodContext
 export const useMenuContext = () => {
   const context = useContext(MenuContext);
   if (!context) {
@@ -61,22 +49,33 @@ export const useMenuContext = () => {
   return context;
 };
 
-// Define the props for the provider component
 type MenuProviderProps = {
   children: ReactNode;
 };
 
-// Create a provider component
 export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
   const [allMenu, setAllMenu] = useState<Menu[]>();
   const [selectedMenu, setSelectedMenu] = useState<string>("");
   const [allMenuItems, setAllMenuItems] = useState<AllMenuItems[]>();
   const [run, setRun] = useState(false);
+
   const addFoodToMenu = async (
     menuKeys: string | undefined,
     foodKeys: string | undefined
   ) => {
     addFoodToOneMenu(menuKeys, foodKeys);
+  };
+
+  const addFoodToMenuItemArray = (
+    currentMenuItem: AllMenuItems[],
+    foodItem: AllMenuItems
+  ) => {
+    try {
+      currentMenuItem.push(foodItem);
+      return currentMenuItem
+    } catch (error) {
+      throw error;
+    }
   };
 
   const fetchAllMenu = async () => {
@@ -89,7 +88,7 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
     newMenu: Menu
   ) => {
     if (currentMenu === undefined) {
-      setAllMenu([newMenu]); // Initialize allMenu if it's undefined
+      setAllMenu([newMenu]);
       return;
     }
     const updatedMenu = [...currentMenu, newMenu];
@@ -98,7 +97,6 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
 
   useEffect(() => {
     fetchAllMenu();
-    // fetchItemMenus();
   }, []);
 
   const addItemsToMenuArray = (
@@ -164,6 +162,7 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
     removeItemFromMenuArray,
     addItemsMenu,
     addNewMenutoArray,
+    addFoodToMenuItemArray
   };
 
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;

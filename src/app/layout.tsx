@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./services/MenuContext";
+import { ThemeProvider } from "./context/MenuContext";
 import { CategoryProvider } from "./category/components/context/CategoryContext";
 import { FoodProvider } from "./food/components/context/FoodContext";
 import { MenuProvider } from "./menu/components/context/menuContext";

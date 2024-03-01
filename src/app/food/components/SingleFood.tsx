@@ -7,11 +7,18 @@ import burger4 from "../../../../public/burger4.jpg";
 import { Food } from "../types/Food";
 import { useFoodContext } from "./context/FoodContext";
 import Modal from "@/app/category/components/Modal";
-import { deleteFood } from "@/app/firebase/food/DeleteFood";
+import { deleteFood } from "@/app/firebase/food/deleteFood";
+import { remove } from "firebase/database";
 
 export default function SingleFood({ foodData }: { foodData: Food }) {
-  const { setIsEditing, setEditFood, setEditFoodCategory, fetchFood } =
-    useFoodContext();
+  const {
+    setIsEditing,
+    setEditFood,
+    setEditFoodCategory,
+    fetchFood,
+    removeFoodFromArray,
+    allFood,
+  } = useFoodContext();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const handleEdit = () => {
@@ -21,13 +28,19 @@ export default function SingleFood({ foodData }: { foodData: Food }) {
       keys: foodData.categoryKeys,
       name: foodData.category,
     };
-    setEditFoodCategory(dataCategory);
+    if (dataCategory) {
+      setEditFoodCategory(dataCategory);
+    }
   };
 
   const handleDelete = async () => {
-    console.log("Food KEYS", foodData.keys);
-    await deleteFood(foodData.keys);
-    fetchFood();
+    if (foodData.keys) {
+      await deleteFood(foodData.keys);
+      if (allFood) {
+        removeFoodFromArray(allFood, foodData.keys);
+      }
+    }
+
     setIsModalOpen(false);
   };
   return (
@@ -83,7 +96,7 @@ const Div2 = styled.div`
   margin: auto;
   gap: 13px;
 
-  img{
+  img {
     border-radius: 20px;
   }
 `;

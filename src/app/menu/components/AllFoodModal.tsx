@@ -7,7 +7,6 @@ import { useMenuContext } from "./context/menuContext";
 import { AllMenuItems } from "../types/AllMenuItems";
 import { Food } from "@/app/food/types/Food";
 
-// Define the styled components for the modal
 const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -45,7 +44,7 @@ const FoodContainer = styled.div`
 
 interface ModalProps {
   isOpen: boolean;
-  onClose: () => void; // onClose function prop
+  onClose: () => void; 
   menuKeys: string | undefined;
   notAvailableFood: string[];
 }
@@ -58,12 +57,16 @@ const AllFoodModal: React.FC<ModalProps> = ({
 }) => {
   const [availableFood, setAvailableFood] = useState<Food[]>();
   const { allFood } = useFoodContext();
+
   useEffect(() => {
-    const filteredItems = allFood?.filter(
-      (item) => item.keys && !notAvailableFood.includes(item.keys)
-    ) as Food[];
-    setAvailableFood(filteredItems);
-  }, [notAvailableFood]);
+    if (notAvailableFood && allFood) {
+      const filteredItems = allFood?.filter(
+        (item) => item.keys && !notAvailableFood.includes(item.keys)
+      ) as Food[];
+      setAvailableFood(filteredItems);
+    }
+  }, [notAvailableFood, allFood]);
+
   if (!isOpen) return null;
 
   const handleClose = () => {
@@ -82,9 +85,6 @@ const AllFoodModal: React.FC<ModalProps> = ({
               return <SingleItem item={food} key={index} type="modal" />;
             })}
         </FoodContainer>
-        {/* Close button */}
-
-        {/* Add your content for the modal here */}
       </ModalContent>
     </ModalWrapper>
   );
