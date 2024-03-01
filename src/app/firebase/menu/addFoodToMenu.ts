@@ -11,7 +11,6 @@ export const addFoodToOneMenu = async (
       foodKeys,
     };
     const newMenuItemRef = await push(ref(db, "menuItems"), newFoodMenuItem);
-    console.log("New item menu added with key:", newMenuItemRef.key);
     return newMenuItemRef.key;
   } catch (error) {
     console.error("Error adding  menu item:", error);

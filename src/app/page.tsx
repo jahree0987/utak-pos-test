@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "./navbar/Navbar";
 import styled from "styled-components";
-import { useMenu } from "./services/MenuContext";
+import { useMenu } from "./context/MenuContext";
 
 export default function Home() {
   const { navMenu } = useMenu();
@@ -22,7 +22,6 @@ export default function Home() {
 
 const MainDiv = styled.div`
   width: 100%;
-  // background-color: #E9DBDB;
   margin-left: 210px;
   height: 100vh;
 `;

@@ -21,7 +21,6 @@ export default function SingleCategory({
   };
 
   const handleDelete = async () => {
-    console.log(category.keys);
     await deleteCategory(category.keys)
     fetchCategoryData()
     setIsModalOpen(false)

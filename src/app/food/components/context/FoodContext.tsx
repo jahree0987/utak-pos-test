@@ -1,6 +1,6 @@
 "use client";
 import { CategoryData } from "@/app/category/types/Category";
-import { fetchFoodData } from "@/app/firebase/food/GetFood";
+import { fetchFoodData } from "@/app/firebase/food/getFood";
 import React, {
   createContext,
   useState,
@@ -11,9 +11,7 @@ import React, {
 import { Food } from "../../types/Food";
 import { fetchItemMenu } from "@/app/firebase/menu/getItemMenu";
 import { useMenuContext } from "@/app/menu/components/context/menuContext";
-import { AllMenuItems } from "@/app/menu/types/AllMenuItems";
 
-// Define the type for the context value
 
 type FoodCategory = {
   keys: string;
@@ -34,12 +32,15 @@ type FoodContextType = {
   setEditFood: (food: Food | undefined) => void;
   editFoodCategory: FoodCategory | undefined;
   setEditFoodCategory: (foodCategory: FoodCategory | undefined) => void;
+  removeFoodFromArray: (currentFood: Food[], keys: string) => void;
+  addItemFromArray: (
+    currentFood: Food[],
+    newFood: Food | undefined
+  ) => Food[] | undefined;
 };
 
-// Create a new context
 const FoodContext = createContext<FoodContextType | undefined>(undefined);
 
-// Create a custom hook to use the FoodContext
 export const useFoodContext = () => {
   const context = useContext(FoodContext);
   if (!context) {
@@ -48,12 +49,10 @@ export const useFoodContext = () => {
   return context;
 };
 
-// Define the props for the provider component
 type FoodProviderProps = {
   children: ReactNode;
 };
 
-// Create a provider component
 export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
   const [allFood, setAllFood] = useState<Food[]>();
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -68,6 +67,28 @@ export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
   const changeFood = (newFood: string) => {};
 
   const { setAllMenuItems } = useMenuContext();
+
+  const removeFoodFromArray = (currenFood: Food[], keys: string) => {
+    const newFood = currenFood.filter((food) => food.keys !== keys);
+    setAllFood(newFood);
+  };
+
+  const addItemFromArray = (
+    currentFood: Food[] | undefined,
+    newFood: Food | undefined
+  ): Food[] | undefined => {
+    try {
+      console.log("CURRENT FOOD", currentFood);
+      console.log("NEW FOOD", newFood);
+      if (newFood) {
+        currentFood?.push(newFood);
+      }
+      return currentFood;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchFood = async () => {
     try {
       const allFoodData = (await fetchFoodData()) as Food[];
@@ -89,7 +110,7 @@ export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
       setAllMenuItems(menuFoods);
       setAllFood(allFoodData);
     } catch (error) {
-      console.log("ERROR IN FETCHING FOOD", error);
+      throw error;
     }
   };
 
@@ -110,6 +131,8 @@ export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
     setEditFood,
     editFoodCategory,
     setEditFoodCategory,
+    removeFoodFromArray,
+    addItemFromArray,
   };
 
   return <FoodContext.Provider value={value}>{children}</FoodContext.Provider>;

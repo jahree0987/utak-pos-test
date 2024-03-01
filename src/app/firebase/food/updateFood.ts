@@ -1,6 +1,5 @@
 import { ref, set } from "firebase/database";
 import { db, storage } from "..";
-import { Food } from "@/app/food/types/Food";
 import { uploadBytes, ref as storageRef } from "firebase/storage";
 
 export const updateFood = async (newFood: any, imageFile?: File) => {
@@ -11,7 +10,7 @@ export const updateFood = async (newFood: any, imageFile?: File) => {
       const imageRef = storageRef(storage, `images/${newFood.keys}`);
       uploadBytes(imageRef, imageFile)
         .then(() => {
-          alert("image uploaded successfully");
+          // alert("image uploaded successfully");
         })
         .catch((error) => {
           throw new error("error in uploading image", error);

@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import DeleteIcon from "./DeletIcon";
 
-// Define types for props
 interface ModalProps {
   isOpen: boolean;
   value: string;
@@ -11,7 +10,6 @@ interface ModalProps {
   onConfirm: () => void;
 }
 
-// Styled components for the modal
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -51,7 +49,6 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-// Modal component with types
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onConfirm, value }) => {
   if (!isOpen) return null;
 

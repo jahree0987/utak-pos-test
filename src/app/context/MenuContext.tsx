@@ -22,7 +22,6 @@ const initialMenuState = [
   },
 ];
 
-// Step 1: Create a context object
 const MenuContext = createContext<{
   navMenu: { name: string; isTrue: boolean; component:any;}[];
   chooseMenu: (chosenMenu: string) => void;
@@ -31,7 +30,6 @@ const MenuContext = createContext<{
   chooseMenu: () => {}, // Placeholder function
 });
 
-// Step 2: Create a provider component
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [navMenu, setNavMenu] = useState(initialMenuState);
 
@@ -54,7 +52,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Step 3: Create a custom hook to consume the context
 export const useMenu = () => {
   return useContext(MenuContext);
 };

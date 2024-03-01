@@ -9,7 +9,6 @@ import React, {
 import { CategoryData } from "../../types/Category";
 import { fetchCategory } from "@/app/firebase";
 
-// Step 1: Create a context object
 const CategoryContext = createContext<{
   categories: CategoryData[] | undefined;
   setCategories: (setCategories: CategoryData[]) => void;
@@ -32,7 +31,6 @@ const CategoryContext = createContext<{
   setSelectedCategory: () => {},
 });
 
-// Step 2: Create a provider component
 export const CategoryProvider = ({ children }: { children: ReactNode }) => {
   const [categories, setCategories] = useState<CategoryData[] | undefined>([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -73,7 +71,6 @@ export const CategoryProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Step 3: Create a custom hook to consume the context
 export const useCategory = () => {
   return useContext(CategoryContext);
 };

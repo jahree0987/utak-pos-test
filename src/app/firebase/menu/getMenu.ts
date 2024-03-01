@@ -24,10 +24,10 @@ export const fetchMenu = () => {
           }
         }
 
-        resolve(categories); // Resolve the promise with the fetched data
+        resolve(categories); 
       },
       {
-        onlyOnce: true, // Read data only once
+        onlyOnce: true, 
       }
     );
   });

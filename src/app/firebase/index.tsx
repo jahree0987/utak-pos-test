@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   DatabaseReference,
@@ -12,10 +11,7 @@ import {
 import { Category } from "./types/Category";
 import { CategoryData } from "../category/types/Category";
 import { FirebaseStorage, getStorage, uploadBytes } from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
 export const firebaseConfig = {
   apiKey: "AIzaSyA3uWoaZZ3j6qJEEMkAk7RLC8ze-RPffpY",
   authDomain: "pos-utak-test.firebaseapp.com",
@@ -42,7 +38,6 @@ export const addCategory = async (categoryData: Category) => {
   try {
     // Push the new category data to the 'categories' node in the database
     const newCategoryRef = await push(ref(db, "categories"), categoryData);
-    console.log("New category added with key:", newCategoryRef.key);
     return newCategoryRef.key;
   } catch (error) {
     console.error("Error adding category:", error);
@@ -60,7 +55,6 @@ export const updateCategory = async (newData: CategoryData) => {
 export const deleteCategory = (keys: string) => {
   try {
     remove(ref(db, "categories/" + keys));
-    console.log("Data removed successfully");
   } catch (error) {
     console.error("Error removing data: ", error);
   }
@@ -98,5 +92,7 @@ export const fetchCategory = () => {
     );
   });
 };
+
+
 
 

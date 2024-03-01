@@ -1,26 +1,7 @@
 import { onValue, ref } from "firebase/database";
 import { db } from "..";
-import { getCategoryByKey, getImage } from "../food/GetFood";
 
-// const fetchSingleFoodData = async (foodKeys: string) => {
-//   return new Promise((resolve, reject) => {
-//     let food: any = [];
-//     const dataRef = ref(db, `food/${foodKeys}`);
-//     onValue(
-//       dataRef,
-//       async (snapshot) => {
-//         const data = snapshot.val();
 
-//         console.log('FOOD DATA', data)
-
-//         resolve(food); // Resolve the promise with the fetched data
-//       },
-//       {
-//         onlyOnce: true, // Read data only once
-//       }
-//     );
-//   });
-// };
 
 export const fetchItemMenu = async () => {
   return new Promise((resolve, reject) => {
@@ -50,7 +31,7 @@ export const fetchItemMenu = async () => {
         }
       );
     } catch (error) {
-      alert("ERROR IN FETCHING MENU ITEMS");
+      // alert("ERROR IN FETCHING MENU ITEMS");
       reject(error);
     }
   });

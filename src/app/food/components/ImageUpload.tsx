@@ -11,18 +11,7 @@ function ImageUpload() {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
-    if (selectedFile) {
-      // You can perform file upload logic here, such as sending the file to a server
-      console.log("Selected file:", selectedFile);
-      // Clear the selected file after upload
-      setSelectedFile(null);
-    } else {
-      console.log("No file selected.");
-    }
-  };
-
-  return (
+   return (
     <UploadContainer>
       <Label htmlFor="fileInput">
         <Img
