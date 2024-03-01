@@ -78,8 +78,6 @@ export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
     newFood: Food | undefined
   ): Food[] | undefined => {
     try {
-      console.log("CURRENT FOOD", currentFood);
-      console.log("NEW FOOD", newFood);
       if (newFood) {
         currentFood?.push(newFood);
       }
