@@ -13,7 +13,7 @@ import { fetchItemMenu } from "@/app/firebase/menu/getItemMenu";
 import { useMenuContext } from "@/app/menu/components/context/menuContext";
 
 
-type FoodCategory = {
+export type FoodCategory = {
   keys: string;
   name: string;
 };

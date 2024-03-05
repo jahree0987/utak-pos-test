@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SingleItem from "./SingleItem";
-import { sampleData } from "../data/sampleData";
 import { useState } from "react";
 import AllFoodModal from "./AllFoodModal";
 import { useMenuContext } from "./context/menuContext";

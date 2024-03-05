@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import burger4 from "../../../../public/burger4.jpg";
 import { Food } from "../types/Food";
-import { useFoodContext } from "./context/FoodContext";
+import { FoodCategory, useFoodContext } from "./context/FoodContext";
 import Modal from "@/app/category/components/Modal";
 import { deleteFood } from "@/app/firebase/food/deleteFood";
 import { remove } from "firebase/database";
@@ -27,7 +27,7 @@ export default function SingleFood({ foodData }: { foodData: Food }) {
     const dataCategory = {
       keys: foodData.categoryKeys,
       name: foodData.category,
-    };
+    } as FoodCategory ;
     if (dataCategory) {
       setEditFoodCategory(dataCategory);
     }

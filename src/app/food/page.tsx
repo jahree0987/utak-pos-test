@@ -2,7 +2,6 @@
 import styled from "styled-components";
 import AddFoodForm from "./components/AddFoodFields";
 import SingleFood from "./components/SingleFood";
-import { sampleData } from "./data/sampleData";
 import Navbar from "../navbar/Navbar";
 import { useFoodContext } from "./components/context/FoodContext";
 import { useEffect } from "react";

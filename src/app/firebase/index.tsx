@@ -44,9 +44,9 @@ export const addCategory = async (categoryData: Category) => {
   }
 };
 
-export const updateCategory = async (newData: CategoryData) => {
+export const updateCategory = async (newData: CategoryData | undefined) => {
   try {
-    set(ref(db, "categories/" + newData.keys), newData);
+    set(ref(db, "categories/" + newData?.keys), newData);
   } catch (error) {
     console.log("ERROR in updating category", error);
   }

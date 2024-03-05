@@ -44,7 +44,7 @@ export default function AddCategoryForm() {
         ...editCategory,
         name: data.name,
         description: data.description,
-      };
+      } as CategoryData;
       await updateCategory(editedCategory);
       setIsEditing(false);
       await fetchCategoryData();
@@ -63,7 +63,6 @@ export default function AddCategoryForm() {
     }
   }, [isEditing, editCategory]);
 
-  
   return (
     <>
       <H1>{isEditing ? "Edit" : "Add"}Category</H1>

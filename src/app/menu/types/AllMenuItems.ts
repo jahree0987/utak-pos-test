@@ -9,9 +9,9 @@ export interface AllMenuItems {
     image:        string;
     category:     string;
     keys:         string;
-    categoryKeys: string;
-    menuKeys:     string;
-    menuItemID:   string;
+    categoryKeys?: string;
+    menuKeys?:     string | undefined;
+    menuItemID?:   string | undefined;
 }
 
 export enum Size {

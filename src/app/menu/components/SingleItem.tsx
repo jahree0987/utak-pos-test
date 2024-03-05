@@ -12,7 +12,7 @@ export default function SingleItem({
   type,
   menuKeys,
 }: {
-  item: AllMenuItems;
+  item: any;
   type?: string | undefined;
   menuKeys?: string | undefined;
 }) {

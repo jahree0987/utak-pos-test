@@ -1,3 +1,4 @@
+'use client'
 import styled from "styled-components";
 import { AddFoodMenuButton } from "./components/AddFoodMenuButton";
 import SingleItem from "./components/SingleItem";
