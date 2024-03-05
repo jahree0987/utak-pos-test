@@ -1,7 +1,5 @@
 'use client'
 import styled from "styled-components";
-import { AddFoodMenuButton } from "./components/AddFoodMenuButton";
-import SingleItem from "./components/SingleItem";
 import SingleMenu from "./components/SingleMenu";
 import AddMenuButton from "./components/AddMenutButton";
 import { useState } from "react";

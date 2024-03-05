@@ -1,3 +1,4 @@
+'use client'
 import styled from "styled-components";
 import SingleItem from "./SingleItem";
 import { useState } from "react";
@@ -6,6 +7,7 @@ import { useMenuContext } from "./context/menuContext";
 import { AllMenuItems } from "../types/AllMenuItems";
 import { useFoodContext } from "@/app/food/components/context/FoodContext";
 import AddFoodMenuButton from "./AddFoodMenuButton";
+
 
 export default function SingleMenu({
   menu,
