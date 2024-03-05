@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import SingleItem from "./SingleItem";
-import { AddFoodMenuButton } from "./AddFoodMenuButton";
 import { sampleData } from "../data/sampleData";
 import { useState } from "react";
 import AllFoodModal from "./AllFoodModal";
 import { useMenuContext } from "./context/menuContext";
 import { AllMenuItems } from "../types/AllMenuItems";
 import { useFoodContext } from "@/app/food/components/context/FoodContext";
+import { AddFoodMenuButton } from "./AddFoodMenuButton";
 
 export default function SingleMenu({
   menu,
