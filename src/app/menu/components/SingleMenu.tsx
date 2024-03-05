@@ -6,7 +6,7 @@ import AllFoodModal from "./AllFoodModal";
 import { useMenuContext } from "./context/menuContext";
 import { AllMenuItems } from "../types/AllMenuItems";
 import { useFoodContext } from "@/app/food/components/context/FoodContext";
-import AddFoodMenuButton from "./AddFoodMenuButton";
+import AddFoodMenuButton from "./AddFoodMenuButtonV2";
 
 
 export default function SingleMenu({
